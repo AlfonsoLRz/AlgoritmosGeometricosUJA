@@ -17,5 +17,7 @@ AlgGeom::DrawPolygon::DrawPolygon (Polygon &polygon): Model3D(), _polygon(polygo
     }
 
     this->_components.push_back(std::unique_ptr<Component>(component));
+
+    this->calculateAABB();
     this->buildVao(component);
 }

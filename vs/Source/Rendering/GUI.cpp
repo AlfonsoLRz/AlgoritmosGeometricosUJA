@@ -103,13 +103,13 @@ void AlgGeom::GUI::renderGuizmo(Model3D::Component* component, SceneContent* sce
 {
 	if (component && _showMenuButtons[MenuButtons::MODELS])
 	{
-		if (ImGui::IsKeyPressed('T'))
+		if (ImGui::IsKeyPressed(ImGuiKey::ImGuiKey_T))
 			_currentGizmoOperation = ImGuizmo::TRANSLATE;
 
-		if (ImGui::IsKeyPressed('R'))
+		if (ImGui::IsKeyPressed(ImGuiKey::ImGuiKey_R))
 			_currentGizmoOperation = ImGuizmo::ROTATE;
 
-		if (ImGui::IsKeyPressed('S'))
+		if (ImGui::IsKeyPressed(ImGuiKey::ImGuiKey_S))
 			_currentGizmoOperation = ImGuizmo::SCALE;
 
 		const mat4 viewMatrix = mat4(sceneContent->_camera[_appState->_selectedCamera]->getViewMatrix());

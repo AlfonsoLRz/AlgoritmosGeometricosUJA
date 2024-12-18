@@ -914,6 +914,8 @@ struct IGFD_Thumbnail_Info
 
 #ifdef __cplusplus
 
+#define IMGUI_DEFINE_MATH_OPERATORS
+
 #include <imgui.h>
 
 #include <cfloat>

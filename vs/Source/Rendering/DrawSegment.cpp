@@ -15,5 +15,7 @@ AlgGeom::DrawSegment::DrawSegment (SegmentLine &segment): Model3D(), _segment(se
     this->_components.push_back(std::unique_ptr<Component>(component));
 
     component->completeTopology();
+
+    this->calculateAABB();
     this->buildVao(component);
 }

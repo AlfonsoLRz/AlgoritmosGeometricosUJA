@@ -41,6 +41,8 @@ AlgGeom::DrawMesh* AlgGeom::DrawMesh::loadModelOBJ(const std::string& path)
         this->buildVao(component.get());
     }
 
+    this->calculateAABB();
+
     return this;
 }
 

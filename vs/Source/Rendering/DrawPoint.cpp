@@ -10,5 +10,6 @@ AlgGeom::DrawPoint::DrawPoint (Point &point): Model3D(), _point(point)
     component->_indices[VAO::IBO_POINT].insert(component->_indices[VAO::IBO_POINT].end(), { 0 });
     this->_components.push_back(std::unique_ptr<Component>(component));
 
+    this->calculateAABB();
     this->buildVao(component);
 }

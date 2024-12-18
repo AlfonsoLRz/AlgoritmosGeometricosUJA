@@ -3,7 +3,7 @@
 /**
 	Copyright(C) 2023 Alfonso López Ruiz
 
-	This program is free software : you can redistribute itand /or modify
+	This program is free software : you can redistribute it and /or modify
 	it under the terms of the GNU General Public License as published by
 	the Free Software Foundation, either version 3 of the License, or
 	(at your option) any later version.
@@ -42,9 +42,9 @@ namespace AlgGeom
 
 		Camera& operator=(const Camera& camera) = delete;
 
-		mat4 getProjectionMatrix() { return _properties._projectionMatrix; }
-		mat4 getViewMatrix() { return _properties._viewMatrix; }
-		mat4 getViewProjectionMatrix() { return _properties._viewProjectionMatrix; }
+		mat4 getProjectionMatrix() const { return _properties._projectionMatrix; }
+		mat4 getViewMatrix() const { return _properties._viewMatrix; }
+		mat4 getViewProjectionMatrix() const { return _properties._viewProjectionMatrix; }
 
 		void saveCamera();
 		void setBottomLeftCorner(const vec2& bottomLeft);

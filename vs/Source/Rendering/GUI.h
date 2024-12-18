@@ -2,7 +2,6 @@
 
 #include "ApplicationState.h"
 #include "CameraGuiAdapter.h"
-#include "ImGuizmo.h"
 #include "SceneContent.h"
 #include "Singleton.h"
 

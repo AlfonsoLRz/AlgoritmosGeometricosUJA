@@ -195,6 +195,15 @@ void AlgGeom::Model3D::buildVao(Component* component)
     component->_vao = vao;
 }
 
+void AlgGeom::Model3D::calculateAABB()
+{
+  _aabb = AABB();
+
+  for (auto& component : _components)
+    for (VAO::Vertex& vertex : component->_vertices)
+      _aabb.update(vertex._position);
+}
+
 void AlgGeom::Model3D::loadModelBinaryFile(const std::string& path)
 {
     std::ifstream fin(path, std::ios::in | std::ios::binary);
