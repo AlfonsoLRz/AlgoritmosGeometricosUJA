@@ -40,7 +40,7 @@ public:
 	/**
 	*	@brief Destructor.
 	*/
-	virtual ~Vertex();
+	~Vertex() override;
 
 	/**
 	*	@brief Determines if the vertex is in a concave position of the polygon.

@@ -103,13 +103,13 @@ void AlgGeom::GUI::renderGuizmo(Model3D::Component* component, SceneContent* sce
 {
 	if (component && _showMenuButtons[MenuButtons::MODELS])
 	{
-		if (ImGui::IsKeyPressed('T'))
+		if (ImGui::IsKeyPressed(ImGuiKey::ImGuiKey_T))
 			_currentGizmoOperation = ImGuizmo::TRANSLATE;
 
-		if (ImGui::IsKeyPressed('R'))
+		if (ImGui::IsKeyPressed(ImGuiKey::ImGuiKey_R))
 			_currentGizmoOperation = ImGuizmo::ROTATE;
 
-		if (ImGui::IsKeyPressed('S'))
+		if (ImGui::IsKeyPressed(ImGuiKey::ImGuiKey_S))
 			_currentGizmoOperation = ImGuizmo::SCALE;
 
 		const mat4 viewMatrix = mat4(sceneContent->_camera[_appState->_selectedCamera]->getViewMatrix());
@@ -248,14 +248,14 @@ void AlgGeom::GUI::showFileDialog(SceneContent* sceneContent)
 			_lastDirectory = DEFAULT_DIRECTORY;
 
 		uint16_t iFileDialog = static_cast<uint16_t>(_fileDialog) / 2;
-		ImGuiFileDialog::Instance()->OpenDialog(FILE_DIALOG_TEXT[iFileDialog].c_str(), "Select a file", FILE_DIALOG_EXTENSION[iFileDialog].c_str(), _lastDirectory);
+		ImGuiFileDialog::Instance()->OpenDialog(FILE_DIALOG_TEXT[iFileDialog], "Select a file", FILE_DIALOG_EXTENSION[iFileDialog].c_str());
 
-		if (ImGuiFileDialog::Instance()->Display(FILE_DIALOG_TEXT[iFileDialog].c_str()))
+		if (ImGuiFileDialog::Instance()->Display(FILE_DIALOG_TEXT[iFileDialog]))
 		{
 			if (ImGuiFileDialog::Instance()->IsOk())
 			{
 				_path = ImGuiFileDialog::Instance()->GetFilePathName();
-				_lastDirectory = _path.substr(0, _path.find_last_of("\\"));
+				_lastDirectory = _path.substr(0, _path.find_last_of('\\'));
 
 				this->processSelectedFile(_fileDialog, _path, sceneContent);
 				_fileDialog = NONE;
@@ -421,6 +421,7 @@ void AlgGeom::GUI::showScreenshotMenu(SceneContent* sceneContent)
 	if (ImGui::Begin("Screenshot Settings", &_showMenuButtons[SCREENSHOT]))
 	{
 		ImGui::SliderFloat("Size multiplier", &_appState->_screenshotFactor, 1.0f, 10.0f);
+		ImGui::SameLine(0, 20); ImGui::Checkbox("Transparent", &_appState->_transparentScreenshot);
 		ImGui::InputText("Filename (RGB)", _appState->_screenshotFilenameBuffer, IM_ARRAYSIZE(_appState->_screenshotFilenameBuffer));
 
 		GuiUtilities::leaveSpace(2);

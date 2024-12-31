@@ -38,14 +38,7 @@ public:
 	/**
 	*	@brief Destructor.
 	*/
-	virtual ~Vect2d();
-
-	/**
-	*	@brief Returns this + b (sum of vectors).
-	*/
-	Vect2d add(Vect2d& b);
-    
-	//Vect2d operator+ (const Vect2d &b);
+    ~Vect2d() override;
 
 	/**
 	*	@brief Returns a . b (scalar product).
@@ -58,13 +51,18 @@ public:
 	virtual Vect2d& operator=(const Vect2d& vector);
 
 	/**
-	*	@brief Returns t . a (vector product by _a scalar).
+	*	@brief Returns this + b (sum of vectors).
 	*/
-	Vect2d scalarMult(double t);
+	Vect2d operator+(const Vect2d& b);
 
 	/**
 	*	@brief Returns a - b (substraction of vectors).
 	*/
-	Vect2d sub(Vect2d& b);
+	Vect2d operator-(const Vect2d& b);
+
+	/**
+	*	@brief Returns t . a (vector product by a scalar).
+	*/
+	Vect2d scalarMult(double t);
 };
 

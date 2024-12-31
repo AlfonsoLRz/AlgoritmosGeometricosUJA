@@ -25,7 +25,7 @@ public:
 	/**
 	*	@brief Destructor.
 	*/
-	~RayLine();
+	~RayLine() override;
 
 	/**
 	*	@brief Distance from a point defined by 'vector' to this rayline.
@@ -58,7 +58,7 @@ public:
 	/**
 	*	@brief Checks if the parameter t is valid to get a point of the rayline.
 	*/
-	virtual bool isTvalid(double t) { return t >= 0; }
+	bool isTvalid(double t) override { return t >= 0; }
 
 	/**
 	*	@brief Assignment operator.

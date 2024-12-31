@@ -153,6 +153,26 @@ AlgGeom::Model3D* AlgGeom::Model3D::setTriangleColor(const vec4& color)
     return this;
 }
 
+AlgGeom::Model3D* AlgGeom::Model3D::setLineWidth(float width)
+{
+    for (auto& component : _components)
+    {
+        component->_lineWidth = width;
+    }
+
+    return this;
+}
+
+AlgGeom::Model3D* AlgGeom::Model3D::setPointSize(float size)
+{
+    for (auto& component : _components)
+    {
+        component->_pointSize = size;
+    }
+
+    return this;
+}
+
 AlgGeom::Model3D* AlgGeom::Model3D::setTopologyVisibility(VAO::IBO_slots topology, bool visible)
 {
     for (auto& component : _components)
@@ -173,6 +193,63 @@ void AlgGeom::Model3D::buildVao(Component* component)
     vao->setIBOData(VAO::IBO_LINE, component->_indices[VAO::IBO_LINE]);
     vao->setIBOData(VAO::IBO_TRIANGLE, component->_indices[VAO::IBO_TRIANGLE]);
     component->_vao = vao;
+}
+
+void AlgGeom::Model3D::calculateAABB()
+{
+  _aabb = AABB();
+
+  for (auto& component : _components)
+    for (VAO::Vertex& vertex : component->_vertices)
+      _aabb.update(vertex._position);
+}
+
+// Protected methods
+
+AlgGeom::Model3D::Component* AlgGeom::Model3D::getVoxel()
+{
+    Component* component = new Component;
+
+    // Geometry
+    {
+	    constexpr vec3 minPosition(-.5f), maxPosition(.5f);
+        const std::vector<vec3> points
+        {
+            vec3(minPosition[0], minPosition[1], maxPosition[2]),		vec3(maxPosition[0], minPosition[1], maxPosition[2]),
+            vec3(minPosition[0], minPosition[1], minPosition[2]),	    vec3(maxPosition[0], minPosition[1], minPosition[2]),
+            vec3(minPosition[0], maxPosition[1], maxPosition[2]),		vec3(maxPosition[0], maxPosition[1], maxPosition[2]),
+            vec3(minPosition[0], maxPosition[1], minPosition[2]),		vec3(maxPosition[0], maxPosition[1], minPosition[2])
+        };
+        const std::vector<vec3> normals
+        {
+            glm::normalize(vec3(-0.5f, -0.5f, 0.5f)),	glm::normalize(vec3(0.5f, -0.5f, 0.5f)),
+            glm::normalize(vec3(-0.5f, -0.5f, -0.5f)),	glm::normalize(vec3(0.5f, -0.5f, -0.5f)),
+            glm::normalize(vec3(-0.5f, 0.5f, 0.5f)),	glm::normalize(vec3(0.5f, 0.5f, 0.5f)),
+            glm::normalize(vec3(-0.5f, 0.5f, -0.5f)),	glm::normalize(vec3(0.5f, 0.5f, -0.5f))
+        };
+        const std::vector<vec2> textCoords{ vec2(0.0f), vec2(0.0f), vec2(0.0f), vec2(0.0f), vec2(0.0f), vec2(0.0f), vec2(0.0f), vec2(0.0f) };
+
+        for (int pointIdx = 0; pointIdx < points.size(); ++pointIdx)
+        {
+            component->_vertices.push_back(VAO::Vertex{ points[pointIdx], normals[pointIdx], textCoords[pointIdx] });
+        }
+    }
+
+    // Topology
+    {
+        component->_indices[VAO::IBO_TRIANGLE] = std::vector<GLuint>
+        {
+            0, 1, 2, RESTART_PRIMITIVE_INDEX, 1, 3, 2, RESTART_PRIMITIVE_INDEX, 4, 5, 6, RESTART_PRIMITIVE_INDEX,
+            5, 7, 6, RESTART_PRIMITIVE_INDEX, 0, 1, 4, RESTART_PRIMITIVE_INDEX, 1, 5, 4, RESTART_PRIMITIVE_INDEX,
+            2, 0, 4, RESTART_PRIMITIVE_INDEX, 2, 4, 6, RESTART_PRIMITIVE_INDEX, 1, 3, 5, RESTART_PRIMITIVE_INDEX,
+            3, 7, 5, RESTART_PRIMITIVE_INDEX, 3, 2, 6, RESTART_PRIMITIVE_INDEX, 3, 6, 7, RESTART_PRIMITIVE_INDEX
+        };
+
+        component->generatePointCloud();
+        component->generateWireframe();
+    }
+
+    return component;
 }
 
 void AlgGeom::Model3D::loadModelBinaryFile(const std::string& path)
@@ -269,13 +346,12 @@ void AlgGeom::Model3D::MatrixRenderInformation::undoMatrix(MatrixType type)
 
 void AlgGeom::Model3D::Component::completeTopology()
 {
-    if (!this->_indices[VAO::IBO_TRIANGLE].empty())
+    if (!this->_indices[VAO::IBO_TRIANGLE].empty() && this->_indices[VAO::IBO_LINE].empty())
     {
-        this->generatePointCloud();
         this->generateWireframe();
     }
 
-    if (!this->_indices[VAO::IBO_LINE].empty())
+    if (!this->_indices[VAO::IBO_LINE].empty() && this->_indices[VAO::IBO_POINT].empty())
     {
         this->generatePointCloud();
     }
@@ -283,12 +359,12 @@ void AlgGeom::Model3D::Component::completeTopology()
 
 void AlgGeom::Model3D::Component::generateWireframe()
 {
-    std::unordered_map<int, std::unordered_set<int>> segmentIncluded;
-    static auto isIncluded = [&](int index1, int index2) -> bool
+    std::unordered_map<int, std::unordered_set<int>>* segmentIncluded = new std::unordered_map<int, std::unordered_set<int>>;
+    auto isIncluded = [&](int index1, int index2) -> bool
     {
         std::unordered_map<int, std::unordered_set<int>>::iterator it;
 
-        if ((it = segmentIncluded.find(index1)) != segmentIncluded.end())
+        if ((it = segmentIncluded->find(index1)) != segmentIncluded->end())
         {
             if (it->second.find(index2) != it->second.end())
             {
@@ -296,7 +372,7 @@ void AlgGeom::Model3D::Component::generateWireframe()
             }
         }
 
-        if ((it = segmentIncluded.find(index2)) != segmentIncluded.end())
+        if ((it = segmentIncluded->find(index2)) != segmentIncluded->end())
         {
             if (it->second.find(index1) != it->second.end())
             {

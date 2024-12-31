@@ -248,14 +248,14 @@ void AlgGeom::GUI::showFileDialog(SceneContent* sceneContent)
 			_lastDirectory = DEFAULT_DIRECTORY;
 
 		uint16_t iFileDialog = static_cast<uint16_t>(_fileDialog) / 2;
-		ImGuiFileDialog::Instance()->OpenDialog(FILE_DIALOG_TEXT[iFileDialog].c_str(), "Select a file", FILE_DIALOG_EXTENSION[iFileDialog].c_str());
+		ImGuiFileDialog::Instance()->OpenDialog(FILE_DIALOG_TEXT[iFileDialog], "Select a file", FILE_DIALOG_EXTENSION[iFileDialog].c_str());
 
-		if (ImGuiFileDialog::Instance()->Display(FILE_DIALOG_TEXT[iFileDialog].c_str()))
+		if (ImGuiFileDialog::Instance()->Display(FILE_DIALOG_TEXT[iFileDialog]))
 		{
 			if (ImGuiFileDialog::Instance()->IsOk())
 			{
 				_path = ImGuiFileDialog::Instance()->GetFilePathName();
-				_lastDirectory = _path.substr(0, _path.find_last_of("\\"));
+				_lastDirectory = _path.substr(0, _path.find_last_of('\\'));
 
 				this->processSelectedFile(_fileDialog, _path, sceneContent);
 				_fileDialog = NONE;

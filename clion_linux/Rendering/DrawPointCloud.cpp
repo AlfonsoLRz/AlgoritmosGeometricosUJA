@@ -18,5 +18,7 @@ AlgGeom::DrawPointCloud::DrawPointCloud (PointCloud &pointCloud): Model3D(), _po
     }
 
     this->_components.push_back(std::unique_ptr<Component>(component));
+
+    this->calculateAABB();
     this->buildVao(component);
 }

@@ -14,7 +14,7 @@ namespace AlgGeom
 		CameraGuiAdapter() : _camera(nullptr) {}
 		virtual ~CameraGuiAdapter() {}
 
-		virtual void renderGuiObject();
+		void renderGuiObject() override;
 		void setCamera(Camera* camera) { _camera = camera; }
 	};
 }

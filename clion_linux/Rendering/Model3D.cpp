@@ -153,6 +153,26 @@ AlgGeom::Model3D* AlgGeom::Model3D::setTriangleColor(const vec4& color)
     return this;
 }
 
+AlgGeom::Model3D* AlgGeom::Model3D::setLineWidth(float width)
+{
+    for (auto& component : _components)
+    {
+        component->_lineWidth = width;
+    }
+
+    return this;
+}
+
+AlgGeom::Model3D* AlgGeom::Model3D::setPointSize(float size)
+{
+    for (auto& component : _components)
+    {
+        component->_pointSize = size;
+    }
+
+    return this;
+}
+
 AlgGeom::Model3D* AlgGeom::Model3D::setTopologyVisibility(VAO::IBO_slots topology, bool visible)
 {
     for (auto& component : _components)
@@ -173,6 +193,15 @@ void AlgGeom::Model3D::buildVao(Component* component)
     vao->setIBOData(VAO::IBO_LINE, component->_indices[VAO::IBO_LINE]);
     vao->setIBOData(VAO::IBO_TRIANGLE, component->_indices[VAO::IBO_TRIANGLE]);
     component->_vao = vao;
+}
+
+void AlgGeom::Model3D::calculateAABB()
+{
+  _aabb = AABB();
+
+  for (auto& component : _components)
+    for (VAO::Vertex& vertex : component->_vertices)
+      _aabb.update(vertex._position);
 }
 
 void AlgGeom::Model3D::loadModelBinaryFile(const std::string& path)
@@ -269,13 +298,12 @@ void AlgGeom::Model3D::MatrixRenderInformation::undoMatrix(MatrixType type)
 
 void AlgGeom::Model3D::Component::completeTopology()
 {
-    if (!this->_indices[VAO::IBO_TRIANGLE].empty())
+    if (!this->_indices[VAO::IBO_TRIANGLE].empty() && this->_indices[VAO::IBO_LINE].empty())
     {
-        this->generatePointCloud();
         this->generateWireframe();
     }
 
-    if (!this->_indices[VAO::IBO_LINE].empty())
+    if (!this->_indices[VAO::IBO_LINE].empty() && this->_indices[VAO::IBO_POINT].empty())
     {
         this->generatePointCloud();
     }
@@ -283,12 +311,12 @@ void AlgGeom::Model3D::Component::completeTopology()
 
 void AlgGeom::Model3D::Component::generateWireframe()
 {
-    std::unordered_map<int, std::unordered_set<int>> segmentIncluded;
-    static auto isIncluded = [&](int index1, int index2) -> bool
+    std::unordered_map<int, std::unordered_set<int>>* segmentIncluded = new std::unordered_map<int, std::unordered_set<int>>;
+    auto isIncluded = [&](int index1, int index2) -> bool
     {
         std::unordered_map<int, std::unordered_set<int>>::iterator it;
 
-        if ((it = segmentIncluded.find(index1)) != segmentIncluded.end())
+        if ((it = segmentIncluded->find(index1)) != segmentIncluded->end())
         {
             if (it->second.find(index2) != it->second.end())
             {
@@ -296,7 +324,7 @@ void AlgGeom::Model3D::Component::generateWireframe()
             }
         }
 
-        if ((it = segmentIncluded.find(index2)) != segmentIncluded.end())
+        if ((it = segmentIncluded->find(index2)) != segmentIncluded->end())
         {
             if (it->second.find(index1) != it->second.end())
             {

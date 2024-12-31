@@ -9,7 +9,7 @@ AlgGeom::VAO::VAO(bool interleaved)
 	glBindVertexArray(_vao);
 
 	// VBOs
-	_vbos.resize(interleaved ? 1 : NUM_VBOS);
+	_vbos.resize(NUM_VBOS);
 	glGenBuffers(static_cast<GLsizei>(_vbos.size()), _vbos.data());
 
 	if (!interleaved)
@@ -36,21 +36,28 @@ AlgGeom::VAO::~VAO()
 	glDeleteVertexArrays(1, &_vao);
 }
 
-void AlgGeom::VAO::drawObject(IBO_slots ibo, GLuint openGLPrimitive, GLuint numIndices)
+void AlgGeom::VAO::drawObject(IBO_slots ibo, GLuint openGLPrimitive, GLuint numIndices) const
 {
 	glBindVertexArray(_vao);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _ibos[ibo]);
 	glDrawElements(openGLPrimitive, numIndices, GL_UNSIGNED_INT, nullptr);
 }
 
-void AlgGeom::VAO::setVBOData(const std::vector<Vertex>& vertices, GLuint changeFrequency)
+void AlgGeom::VAO::drawObject(IBO_slots ibo, GLuint openGLPrimitive, GLuint numIndices, GLuint numInstances) const
+{
+	glBindVertexArray(_vao);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _ibos[ibo]);
+	glDrawElementsInstanced(openGLPrimitive, numIndices, GL_UNSIGNED_INT, nullptr, numInstances);
+}
+
+void AlgGeom::VAO::setVBOData(const std::vector<Vertex>& vertices, GLuint changeFrequency) const
 {
 	glBindVertexArray(_vao);
 	glBindBuffer(GL_ARRAY_BUFFER, _vbos[0]);
 	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(VAO::Vertex), vertices.data(), changeFrequency);
 }
 
-void AlgGeom::VAO::setIBOData(IBO_slots ibo, const std::vector<GLuint>& indices, GLuint changeFrequency)
+void AlgGeom::VAO::setIBOData(IBO_slots ibo, const std::vector<GLuint>& indices, GLuint changeFrequency) const
 {
 	glBindVertexArray(_vao);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _ibos[ibo]);

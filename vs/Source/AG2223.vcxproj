@@ -151,7 +151,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>Fonts/;Patterns/;Rendering/;Geometry/;PrecompiledHeaders/;Libraries/imguifiledialog</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Fonts/;Patterns/;Rendering/;Geometry/;PrecompiledHeaders/;Libraries/ImGuiFileDialog</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
       <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
@@ -192,6 +192,7 @@
     <ClCompile Include="Geometry\Triangle.cpp" />
     <ClCompile Include="Geometry\Vect2d.cpp" />
     <ClCompile Include="Geometry\Vertex.cpp" />
+    <ClCompile Include="Geometry\Voxelization.cpp" />
     <ClCompile Include="Libraries\imguifiledialog\ImGuiFileDialog.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
@@ -212,6 +213,7 @@
     <ClCompile Include="Rendering\DrawRay.cpp" />
     <ClCompile Include="Rendering\DrawSegment.cpp" />
     <ClCompile Include="Rendering\DrawTriangle.cpp" />
+    <ClCompile Include="Rendering\DrawVoxelization.cpp" />
     <ClCompile Include="Rendering\FBO.cpp" />
     <ClCompile Include="Rendering\FBOScreenshot.cpp" />
     <ClCompile Include="Rendering\GUI.cpp" />
@@ -257,6 +259,7 @@
     <ClInclude Include="Geometry\Triangle.h" />
     <ClInclude Include="Geometry\Vect2d.h" />
     <ClInclude Include="Geometry\Vertex.h" />
+    <ClInclude Include="Geometry\Voxelization.h" />
     <ClInclude Include="Libraries\imgizmo\ImZoomSlider.h" />
     <ClInclude Include="Libraries\imguifiledialog\ImGuiFileDialog.h" />
     <ClInclude Include="Libraries\imguifiledialog\ImGuiFileDialogConfig.h" />
@@ -279,6 +282,7 @@
     <ClInclude Include="Rendering\DrawRay.h" />
     <ClInclude Include="Rendering\DrawSegment.h" />
     <ClInclude Include="Rendering\DrawTriangle.h" />
+    <ClInclude Include="Rendering\DrawVoxelization.h" />
     <ClInclude Include="Rendering\FBO.h" />
     <ClInclude Include="Rendering\FBOScreenshot.h" />
     <ClInclude Include="Rendering\GUI.h" />

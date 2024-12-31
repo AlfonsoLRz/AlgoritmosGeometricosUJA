@@ -42,8 +42,8 @@ namespace AlgGeom
 		void prepareOpenGL(uint16_t width, uint16_t height, ApplicationState* appState);
 		void removeModel();
 		void render(float alpha = 1.0f, bool renderGui = true, bool bindScreenshoter = false);
-		virtual void resizeEvent(uint16_t width, uint16_t height);
-		virtual void screenshotEvent(const ScreenshotEvent& event);
+		void resizeEvent(uint16_t width, uint16_t height) override;
+		void screenshotEvent(const ScreenshotEvent& event) override;
 	};
 }
 

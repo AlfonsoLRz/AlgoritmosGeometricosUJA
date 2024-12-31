@@ -20,7 +20,7 @@ namespace AlgGeom
     public:
         DrawLine(Line& t);
         DrawLine(const DrawLine& drawLine) = delete;
-        virtual ~DrawLine() {};
+        ~DrawLine() override {};
     };
 }
 

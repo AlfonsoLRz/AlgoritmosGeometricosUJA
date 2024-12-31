@@ -32,7 +32,7 @@ namespace AlgGeom
 			vec3		_pointColor;
 			vec3		_lineColor;
 
-			Material() : _kdColor(1.00, 0.81, 0.29, 1.0f), _ksColor(.5f), _kadTexture(nullptr), _useUniformColor(true), _metallic(.7f), _roughnessK(.3f), _pointColor(.0f), _lineColor(.0f) {}
+			Material() : _kdColor(1.00, 0.81, 0.29, 1.0f), _ksColor(.5f), _metallic(.7f), _roughnessK(.3f), _kadTexture(nullptr), _useUniformColor(true), _pointColor(.0f), _lineColor(.0f) {}
 		};
 
 	public:
@@ -89,6 +89,7 @@ namespace AlgGeom
 
 	protected:
 		void buildVao(Component* component);
+		void calculateAABB();
 		void loadModelBinaryFile(const std::string& path);
 		void writeBinaryFile(const std::string& path);
 
@@ -107,6 +108,8 @@ namespace AlgGeom
 		Model3D* setLineColor(const vec3& color);
 		Model3D* setPointColor(const vec3& color);
 		Model3D* setTriangleColor(const vec4& color);
+		Model3D* setLineWidth(float width);
+		Model3D* setPointSize(float size);
 		Model3D* setTopologyVisibility(VAO::IBO_slots topology, bool visible);
 	};
 }

@@ -21,6 +21,6 @@ namespace AlgGeom
     public:
         DrawTriangle(Triangle& t);
         DrawTriangle(const DrawTriangle& drawTriangle) = delete;
-        virtual ~DrawTriangle() {};
+        ~DrawTriangle() override {};
     };
 }

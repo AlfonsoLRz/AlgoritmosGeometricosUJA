@@ -25,7 +25,7 @@ public:
 	/**
 	*	@brief Destructor.
 	*/
-	virtual ~Line();
+	~Line() override;
 
 	/**
 	*	@brief Distance from a point defined by 'vector' to this line.
@@ -58,12 +58,12 @@ public:
 	/**
 	*	@brief Checks if the parameter t is valid to obtain a point for a line (it's always valid, we just need to override).
 	*/
-	virtual bool isTValid(double t) { return true; }
+	bool isTvalid(double t) override { return true; }
 
 	/**
 	*	@brief Assignment operator.
 	*/
-	virtual Line& operator=(const Line& line);
+	Line& operator=(const Line& line);
 
 	/**
 	*	@brief Overriding cout call.
@@ -73,6 +73,6 @@ public:
 	/**
 	*	@brief Checks if a segment intersects with this line (proper intersection).
 	*/
-	virtual bool segmentIntersection(SegmentLine& l);
+	bool segmentIntersection(SegmentLine& l) override;
 };
 

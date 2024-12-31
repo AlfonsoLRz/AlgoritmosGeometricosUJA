@@ -1,10 +1,11 @@
 cmake_minimum_required(VERSION 3.24)
-project(AG2223_CLion)
+project(AG_CLion)
 
 set(CMAKE_CXX_STANDARD 20)
 
 add_definitions(-D_ITERATOR_DEBUG_LEVEL=0)
-set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MT")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MDd")
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MD")
 
 set(FONTS ./Fonts)
 set(GEOMETRY ./Geometry)
@@ -12,7 +13,7 @@ set(LIBRARIES ./Libraries)
 set(PATTERNS ./Patterns)
 set(PRECOMPILED_HEADERS ./PrecompiledHeaders)
 set(RENDERING ./Rendering)
-set(VCPKG D:/Software/vcpkg/installed/x64-windows)
+set(VCPKG C:/vcpkg/installed/x64-windows)
 
 include_directories(${FONTS})
 include_directories(${GEOMETRY})
@@ -20,9 +21,8 @@ include_directories(${LIBRARIES})
 include_directories(${PATTERNS})
 include_directories(${PRECOMPILED_HEADERS})
 include_directories(${RENDERING})
-include_directories(${LIBRARIES}/imguifiledialog/)
-include_directories(${LIBRARIES}/imgizmo)
-include_directories(${LIBRARIES}/imgui)
+include_directories(${LIBRARIES}/ImGuiFileDialog)
+include_directories(${LIBRARIES}/lodepng)
 include_directories(${VCPKG}/include/)
 include_directories(${VCPKG}/include/assimp)
 include_directories(${VCPKG}/include/GLFW/include)
@@ -37,125 +37,109 @@ link_directories(${VCPKG}/lib)
 
 set(SOURCE_FILES
         main.cpp
-        ${GEOMETRY}/AABB.h
         ${GEOMETRY}/AABB.cpp
+        ${GEOMETRY}/AABB.h
         ${GEOMETRY}/BasicGeometry.h
         ${GEOMETRY}/ChronoUtilities.h
-        ${GEOMETRY}/Circle.h
         ${GEOMETRY}/Circle.cpp
-        ${GEOMETRY}/Line.h
+        ${GEOMETRY}/Circle.h
         ${GEOMETRY}/Line.cpp
-        ${GEOMETRY}/Point.h
+        ${GEOMETRY}/Line.h
         ${GEOMETRY}/Point.cpp
-        ${GEOMETRY}/PointCloud.h
+        ${GEOMETRY}/Point.h
         ${GEOMETRY}/PointCloud.cpp
-        ${GEOMETRY}/PolygonGeo.h
-        ${GEOMETRY}/PolygonGeo.cpp
+        ${GEOMETRY}/PointCloud.h
+        ${GEOMETRY}/Polygon.cpp
+        ${GEOMETRY}/Polygon.h
         ${GEOMETRY}/RandomUtilities.h
-        ${GEOMETRY}/RayLine.h
         ${GEOMETRY}/RayLine.cpp
-        ${GEOMETRY}/RenderSettings.h
-        ${GEOMETRY}/RenderSettings.cpp
-        ${GEOMETRY}/SegmentLine.h
+        ${GEOMETRY}/RayLine.h
         ${GEOMETRY}/SegmentLine.cpp
-        ${GEOMETRY}/ShaderProgram.h
-        ${GEOMETRY}/ShaderProgram.cpp
-        ${GEOMETRY}/Triangle.h
+        ${GEOMETRY}/SegmentLine.h
         ${GEOMETRY}/Triangle.cpp
-        ${GEOMETRY}/Vect2d.h
+        ${GEOMETRY}/Triangle.h
         ${GEOMETRY}/Vect2d.cpp
-        ${GEOMETRY}/Vertex.h
+        ${GEOMETRY}/Vect2d.h
         ${GEOMETRY}/Vertex.cpp
+        ${GEOMETRY}/Vertex.h
+        ${GEOMETRY}/Voxelization.cpp
+        ${GEOMETRY}/Voxelization.h
         ${PATTERNS}/Singleton.h
         ${PRECOMPILED_HEADERS}/InclDraw2D.h
         ${PRECOMPILED_HEADERS}/InclGeom2D.h
-        ${PRECOMPILED_HEADERS}/stdafx.h
         ${PRECOMPILED_HEADERS}/stdafx.cpp
+        ${PRECOMPILED_HEADERS}/stdafx.h
         ${RENDERING}/ApplicationState.h
-        ${RENDERING}/Camera.h
         ${RENDERING}/Camera.cpp
-        ${RENDERING}/CameraGuiAdapter.h
+        ${RENDERING}/Camera.h
         ${RENDERING}/CameraGuiAdapter.cpp
-        ${RENDERING}/CameraProjection.h
+        ${RENDERING}/CameraGuiAdapter.h
         ${RENDERING}/CameraProjection.cpp
-        ${RENDERING}/DrawLine.h
+        ${RENDERING}/CameraProjection.h
+        ${RENDERING}/DrawCircle.cpp
+        ${RENDERING}/DrawCircle.h
         ${RENDERING}/DrawLine.cpp
-        ${RENDERING}/DrawMesh.h
+        ${RENDERING}/DrawLine.h
         ${RENDERING}/DrawMesh.cpp
-        ${RENDERING}/DrawPoint.h
+        ${RENDERING}/DrawMesh.h
         ${RENDERING}/DrawPoint.cpp
-        ${RENDERING}/DrawPointCloud.h
+        ${RENDERING}/DrawPoint.h
         ${RENDERING}/DrawPointCloud.cpp
-        ${RENDERING}/DrawPolygon.h
+        ${RENDERING}/DrawPointCloud.h
         ${RENDERING}/DrawPolygon.cpp
-        ${RENDERING}/DrawRay.h
+        ${RENDERING}/DrawPolygon.h
         ${RENDERING}/DrawRay.cpp
-        ${RENDERING}/DrawSegment.h
+        ${RENDERING}/DrawRay.h
         ${RENDERING}/DrawSegment.cpp
-        ${RENDERING}/DrawTriangle.h
+        ${RENDERING}/DrawSegment.h
         ${RENDERING}/DrawTriangle.cpp
-        ${RENDERING}/FBO.h
+        ${RENDERING}/DrawTriangle.h
+        ${RENDERING}/DrawVoxelization.cpp
+        ${RENDERING}/DrawVoxelization.h
         ${RENDERING}/FBO.cpp
-        ${RENDERING}/FBOScreenshot.h
+        ${RENDERING}/FBO.h
         ${RENDERING}/FBOScreenshot.cpp
-        ${RENDERING}/GUI.h
+        ${RENDERING}/FBOScreenshot.h
         ${RENDERING}/GUI.cpp
-        ${RENDERING}/GuiUtilities.h
+        ${RENDERING}/GUI.h
         ${RENDERING}/GuiUtilities.cpp
-        ${RENDERING}/Image.h
+        ${RENDERING}/GuiUtilities.h
         ${RENDERING}/Image.cpp
-        ${RENDERING}/InputManager.h
+        ${RENDERING}/Image.h
         ${RENDERING}/InputManager.cpp
+        ${RENDERING}/InputManager.h
         ${RENDERING}/InterfaceAdapter.h
-        ${RENDERING}/Model3D.h
         ${RENDERING}/Model3D.cpp
-        ${RENDERING}/RandomUtilities.h
-        ${RENDERING}/Renderer.h
+        ${RENDERING}/Model3D.h
         ${RENDERING}/Renderer.cpp
-        ${RENDERING}/RenderingShader.h
+        ${RENDERING}/Renderer.h
         ${RENDERING}/RenderingShader.cpp
-        ${RENDERING}/SceneContent.h
+        ${RENDERING}/RenderingShader.h
         ${RENDERING}/SceneContent.cpp
-        ${RENDERING}/ShaderProgram.h
+        ${RENDERING}/SceneContent.h
         ${RENDERING}/ShaderProgram.cpp
-        ${RENDERING}/ShaderProgramDB.h
+        ${RENDERING}/ShaderProgram.h
         ${RENDERING}/ShaderProgramDB.cpp
-        ${RENDERING}/Texture.h
+        ${RENDERING}/ShaderProgramDB.h
         ${RENDERING}/Texture.cpp
-        ${RENDERING}/TextureList.h
+        ${RENDERING}/Texture.h
         ${RENDERING}/TextureList.cpp
-        ${RENDERING}/VAO.h
+        ${RENDERING}/TextureList.h
         ${RENDERING}/VAO.cpp
-        ${RENDERING}/Window.h
+        ${RENDERING}/VAO.h
         ${RENDERING}/Window.cpp
-        ${LIBRARIES}/imgui/imgui.h
-        ${LIBRARIES}/imgui/imgui.cpp
-        ${LIBRARIES}/imgui/imgui_draw.cpp
-        ${LIBRARIES}/imgui/examples/imgui_impl_glfw.h
-        ${LIBRARIES}/imgui/examples/imgui_impl_glfw.cpp
-        ${LIBRARIES}/imgui/examples/imgui_impl_opengl3.cpp
-        ${LIBRARIES}/imgui/imgui_tables.cpp
-        ${LIBRARIES}/imgui/imgui_widgets.cpp
-        ${LIBRARIES}/imgui/imgui_internal.h
-        ${LIBRARIES}/imgui/imstb_truetype.h
-        ${LIBRARIES}/imgizmo/ImZoomSlider.h
-        ${LIBRARIES}/imgizmo/ImSequencer.h
-        ${LIBRARIES}/imgizmo/ImSequencer.cpp
-        ${LIBRARIES}/imgizmo/ImGuizmo.h
-        ${LIBRARIES}/imgizmo/ImGuizmo.cpp
-        ${LIBRARIES}/imgizmo/ImCurveEdit.h
-        ${LIBRARIES}/imgizmo/ImCurveEdit.cpp
-        ${LIBRARIES}/imgizmo/ImGradient.h
-        ${LIBRARIES}/imgizmo/ImGradient.cpp
-        ${LIBRARIES}/imguifiledialog/ImGuiFileDialog.h
-        ${LIBRARIES}/imguifiledialog/ImGuiFileDialog.cpp
-        ${LIBRARIES}/imguifiledialog/ImGuiFileDialogConfig.h
+        ${RENDERING}/Window.h
+        ${LIBRARIES}/ImGuiFileDialog/ImGuiFileDialog.h
+        ${LIBRARIES}/ImGuiFileDialog/ImGuiFileDialog.cpp
+        ${LIBRARIES}/ImGuiFileDialog/ImGuiFileDialogConfig.h
+        ${LIBRARIES}/lodepng/lodepng.h
+        ${LIBRARIES}/lodepng/lodepng.cpp
         ${FONTS}/lato.hpp
         ${FONTS}/lato.cpp
         ${FONTS}/IconsFontAwesome5.h
         ${FONTS}/font_awesome.hpp
         ${FONTS}/font_awesome.cpp
         ${FONTS}/font_awesome_2.cpp)
-add_executable(AG2223_CLion ${SOURCE_FILES})
+add_executable(AG_CLion ${SOURCE_FILES})
 
-target_link_libraries(AG2223_CLion glfw3dll glew32 OpenGL32 assimp-vc142-mt lodepng)
+target_link_libraries(AG_CLion imgui imguizmo glfw3dll glew32 OpenGL32 assimp-vc143-mt)

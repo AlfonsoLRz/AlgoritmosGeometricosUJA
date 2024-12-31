@@ -20,7 +20,7 @@ namespace AlgGeom
     public:
         DrawPointCloud(PointCloud& t);
         DrawPointCloud(const DrawPointCloud& drawPointCloud) = delete;
-        virtual ~DrawPointCloud() {};
+        ~DrawPointCloud() override {};
     };
 }
 

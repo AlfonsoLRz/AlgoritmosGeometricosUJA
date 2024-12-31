@@ -20,7 +20,7 @@ namespace AlgGeom
     public:
         DrawRay(RayLine& t);
         DrawRay(const DrawRay& drawRay) = delete;
-        virtual ~DrawRay() {};
+        ~DrawRay() override {};
     };
 }
 

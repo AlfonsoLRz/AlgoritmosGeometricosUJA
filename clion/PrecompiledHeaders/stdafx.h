@@ -1,3 +1,8 @@
+#pragma once
+
+#define IMGUI_DEFINE_MATH_OPERATORS
+#define GLM_ENABLE_EXPERIMENTAL
+
 #include <any>
 #include <chrono>
 #include <cmath>
@@ -32,8 +37,9 @@
 
 // Gui
 #include "imgui.h"
-#include "imgui/examples/imgui_impl_glfw.h"
-#include "imgui/examples/imgui_impl_opengl3.h"
+#include "imgui_impl_glfw.h"
+#include "imgui_impl_opengl3.h"
+#include "ImGuizmo.h"
 
 // Rename
 typedef glm::vec4 vec4;

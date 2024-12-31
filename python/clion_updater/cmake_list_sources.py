@@ -6,8 +6,7 @@ substitute_folder = {
     'Geometry': '${GEOMETRY}',
     'Rendering': '${RENDERING}',
     'Patterns': '${PATTERNS}',
-    'PrecompiledHeaders': '${PRECOMPILED_HEADERS}',
-    'Libraries': '${LIBRARIES}'
+    'PrecompiledHeaders': '${PRECOMPILED_HEADERS}'
 }
 
 if __name__ == '__main__':
