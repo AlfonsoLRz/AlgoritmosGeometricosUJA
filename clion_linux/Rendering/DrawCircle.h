@@ -15,7 +15,7 @@ namespace AlgGeom
 	public:
 		DrawCircle(Circle& circle, uint32_t numSubdivisions = 256);
 		DrawCircle(const DrawCircle& ddt) = delete;
-		virtual ~DrawCircle() {};
+		~DrawCircle() override {};
 	};
 }
 

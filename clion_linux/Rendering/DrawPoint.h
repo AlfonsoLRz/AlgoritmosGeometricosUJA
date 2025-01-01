@@ -20,7 +20,7 @@ namespace AlgGeom
     public:
         DrawPoint(Point& p);
         DrawPoint(const DrawPoint& drawPoint) = delete;
-        virtual ~DrawPoint() {};
+        ~DrawPoint() override {};
     };
 }
 

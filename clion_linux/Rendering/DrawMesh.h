@@ -15,7 +15,7 @@ namespace AlgGeom
 
 	public:
 		DrawMesh();
-		virtual ~DrawMesh();
+		~DrawMesh() override;
 
 		DrawMesh* loadModelOBJ(const std::string& path);
 	};

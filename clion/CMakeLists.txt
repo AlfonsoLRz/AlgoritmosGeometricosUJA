@@ -9,7 +9,7 @@ set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MD")
 
 set(FONTS ./Fonts)
 set(GEOMETRY ./Geometry)
-set(LIBRARIES ./Libraries)
+set(LIBRARIES ../Libraries)
 set(PATTERNS ./Patterns)
 set(PRECOMPILED_HEADERS ./PrecompiledHeaders)
 set(RENDERING ./Rendering)

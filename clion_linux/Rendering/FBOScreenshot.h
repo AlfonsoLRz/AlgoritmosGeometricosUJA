@@ -13,13 +13,13 @@ namespace AlgGeom
 
 	public:
 		FBOScreenshot(const uint16_t width, const uint16_t height);
-		virtual ~FBOScreenshot();
+		~FBOScreenshot() override;
 
-		virtual GLuint getId() const { return _multisampledFBO; }
+		GLuint getId() const override { return _multisampledFBO; }
 		AlgGeom::Image* getImage() const;
 
-		virtual void bindFBO();
-		virtual void modifySize(const uint16_t width, const uint16_t height);
+		void bindFBO() override;
+		void modifySize(const uint16_t width, const uint16_t height) override;
 		void saveImage(const std::string& filename);
 	};
 }

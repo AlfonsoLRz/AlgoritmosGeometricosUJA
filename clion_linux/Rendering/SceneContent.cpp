@@ -49,6 +49,10 @@ void AlgGeom::SceneContent::buildScenario()
 
     this->addNewModel((new DrawPolygon(*polygon))->setTriangleColor(vec4(RandomUtilities::getUniformRandomColor(), 1.0f))->overrideModelName()->setModelMatrix(glm::rotate(mat4(1.0f), (glm::abs(4 * polygonAlpha - glm::pi<float>() / 2.0f * 3.0f)), vec3(.0f, .0f, 1.0f))));
     delete polygon;
+
+    // Line
+    Line* line = new Line(Point(-1.0, -1.0), Point(1.0, 1.0));
+    this->addNewModel((new DrawLine(*line))->setLineColor(vec4(.0f, 1.0f, .0f, 1.0f))->overrideModelName()->setLineWidth(2.0f));
 }
 
 

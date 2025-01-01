@@ -1,11 +1,11 @@
-# Algoritmos Geométricos (2022-2023)
+# Algoritmos Geométricos (RUJA)
 
-![c++](https://img.shields.io/github/languages/top/AlfonsoLRz/AG2223) 
+![c++](https://img.shields.io/github/languages/top/AlfonsoLRz/AlgoritmosGeometricos_RUJA) 
 ![opengl](https://img.shields.io/badge/opengl-4.5-red.svg) 
 ![imgui](https://img.shields.io/badge/imgui-1.82-green.svg) 
 ![license](https://img.shields.io/badge/license-MIT-blue.svg)
 
-Proyecto base para la asignatura de Algoritmos Geométricos en la Universidad de Jaén (Curso 2023). A continuación se describen las interacciones disponibles en la aplicación.
+Proyecto base para la asignatura de Algoritmos Geométricos en la Universidad de Jaén. A continuación se describen las interacciones disponibles en la aplicación.
 
 1. Cámara: interacción a través de teclado y ratón.
     | Movimiento | Interacción |

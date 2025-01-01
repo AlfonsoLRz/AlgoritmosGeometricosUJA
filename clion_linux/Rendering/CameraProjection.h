@@ -48,15 +48,15 @@ namespace AlgGeom
 	class PerspectiveProjection : public CameraProjection
 	{
 	public:
-		virtual mat4 buildProjectionMatrix(CameraProperties* camera);
-		virtual void zoom(CameraProperties* camera, const float speed);
+		mat4 buildProjectionMatrix(CameraProperties* camera) override;
+		void zoom(CameraProperties* camera, const float speed) override;
 	};
 
 	class OrthographicProjection : public CameraProjection
 	{
 	public:
-		virtual mat4 buildProjectionMatrix(CameraProperties* camera);
-		virtual void zoom(CameraProperties* camera, const float speed);
+		mat4 buildProjectionMatrix(CameraProperties* camera) override;
+		void zoom(CameraProperties* camera, const float speed) override;
 	};
 }
 

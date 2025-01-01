@@ -38,7 +38,7 @@ public:
 	/**
 	*	@brief Destructor.
 	*/
-	virtual ~Vect2d();
+    ~Vect2d() override;
 
 	/**
 	*	@brief Returns a . b (scalar product).

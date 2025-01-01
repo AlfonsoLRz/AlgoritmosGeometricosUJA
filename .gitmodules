@@ -1,9 +1,12 @@
-[submodule "vs/Source/Libraries/ImGuiFileDialog"]
-	path = vs/Source/Libraries/ImGuiFileDialog
+[submodule "libraries/imgui"]
+	path = libraries/imgui
+	url = imguihttps://github.com/ocornut/imgui.git
+[submodule "libraries/lodepng"]
+	path = libraries/lodepng
+	url = lodepnghttps://github.com/lvandeve/lodepng
+[submodule "libraries/ImGuiFileDialog"]
+	path = libraries/ImGuiFileDialog
 	url = imguifiledialoghttps://github.com/aiekick/ImGuiFileDialog.git
-[submodule "clion/Libraries/ImGuiFileDialog"]
-	path = clion/Libraries/ImGuiFileDialog
-	url = imguifiledialoghttps://github.com/aiekick/ImGuiFileDialog.git
-[submodule "clion/Libraries/lodepng"]
-	path = clion/Libraries/lodepng
-	url = lodepnghttps://github.com/lvandeve/lodepng.git
+[submodule "libraries/ImGuizmo"]
+	path = libraries/ImGuizmo
+	url = imguizmohttps://github.com/CedricGuillemet/ImGuizmo.git

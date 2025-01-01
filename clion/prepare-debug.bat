@@ -24,8 +24,8 @@ for %%D in (%DLL_LIST%) do (
 )
 
 echo Done. Selected DLLs have been copied to %OUTPUT_DIR%.
-pause
 
 echo Copying Assets folder to %OUTPUT_DIR%...
 xcopy /E /I /H /Y "..\vs\Source\Assets" "%OUTPUT_DIR%\Assets"
 
+pause

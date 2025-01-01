@@ -119,7 +119,7 @@ public:
 	/**
 	*	@brief Assignment operator (override).
 	*/
-	virtual Point& operator=(const Point& point);
+	Point& operator=(const Point& point);
 
 	/**
 	*	@brief Overriding cout call.
