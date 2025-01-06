@@ -145,20 +145,10 @@ set(SOURCE_FILES
         ${LIBRARIES}/imgui/backends/imgui_impl_opengl3.cpp
         ${LIBRARIES}/imgui/imgui_tables.cpp
         ${LIBRARIES}/imgui/imgui_widgets.cpp
-        ${LIBRARIES}/imgui/imgui_internal.h
-        ${LIBRARIES}/imgui/imstb_truetype.h
-        ${LIBRARIES}/ImGuizmo/ImZoomSlider.h
-        ${LIBRARIES}/ImGuizmo/ImSequencer.h
-        ${LIBRARIES}/ImGuizmo/ImSequencer.cpp
         ${LIBRARIES}/ImGuizmo/ImGuizmo.h
         ${LIBRARIES}/ImGuizmo/ImGuizmo.cpp
-        ${LIBRARIES}/ImGuizmo/ImCurveEdit.h
-        ${LIBRARIES}/ImGuizmo/ImCurveEdit.cpp
-        ${LIBRARIES}/ImGuizmo/ImGradient.h
-        ${LIBRARIES}/ImGuizmo/ImGradient.cpp
         ${LIBRARIES}/ImGuiFileDialog/ImGuiFileDialog.h
         ${LIBRARIES}/ImGuiFileDialog/ImGuiFileDialog.cpp
-        ${LIBRARIES}/ImGuiFileDialog/ImGuiFileDialogConfig.h
         ${FONTS}/lato.hpp
         ${FONTS}/lato.cpp
         ${FONTS}/IconsFontAwesome5.h

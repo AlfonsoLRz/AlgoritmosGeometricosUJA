@@ -131,7 +131,6 @@ set(SOURCE_FILES
         ${RENDERING}/Window.h
         ${LIBRARIES}/ImGuiFileDialog/ImGuiFileDialog.h
         ${LIBRARIES}/ImGuiFileDialog/ImGuiFileDialog.cpp
-        ${LIBRARIES}/ImGuiFileDialog/ImGuiFileDialogConfig.h
         ${LIBRARIES}/lodepng/lodepng.h
         ${LIBRARIES}/lodepng/lodepng.cpp
         ${FONTS}/lato.hpp
