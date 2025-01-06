@@ -28,9 +28,11 @@ include_directories(${PATTERNS})
 include_directories(${PRECOMPILED_HEADERS})
 include_directories(${RENDERING})
 include_directories(${LIBRARIES})
-include_directories(${LIBRARIES}/imguifiledialog)
-include_directories(${LIBRARIES}/imgizmo)
+include_directories(${LIBRARIES}/ImGuiFileDialog)
+include_directories(${LIBRARIES}/ImGuizmo)
 include_directories(${LIBRARIES}/imgui)
+include_directories(${LIBRARIES}/imgui/backend)
+include_directories(${LIBRARIES}/lodepng)
 include_directories(${OPENGL_INCLUDE_DIR})
 
 set_source_files_properties(stdafx.cpp
