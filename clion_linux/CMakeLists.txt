@@ -138,9 +138,9 @@ set(SOURCE_FILES
         ${LIBRARIES}/imgui/imgui.h
         ${LIBRARIES}/imgui/imgui.cpp
         ${LIBRARIES}/imgui/imgui_draw.cpp
-        ${LIBRARIES}/imgui/backend/imgui_impl_glfw.h
-        ${LIBRARIES}/imgui/backend/imgui_impl_glfw.cpp
-        ${LIBRARIES}/imgui/backend/imgui_impl_opengl3.cpp
+        ${LIBRARIES}/imgui/backends/imgui_impl_glfw.h
+        ${LIBRARIES}/imgui/backends/imgui_impl_glfw.cpp
+        ${LIBRARIES}/imgui/backends/imgui_impl_opengl3.cpp
         ${LIBRARIES}/imgui/imgui_tables.cpp
         ${LIBRARIES}/imgui/imgui_widgets.cpp
         ${LIBRARIES}/imgui/imgui_internal.h
