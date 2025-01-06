@@ -1,12 +1,12 @@
 [submodule "libraries/imgui"]
 	path = libraries/imgui
-	url = imguihttps://github.com/ocornut/imgui.git
+	url = https://github.com/ocornut/imgui.git
 [submodule "libraries/lodepng"]
 	path = libraries/lodepng
-	url = lodepnghttps://github.com/lvandeve/lodepng
+	url = https://github.com/lvandeve/lodepng
 [submodule "libraries/ImGuiFileDialog"]
 	path = libraries/ImGuiFileDialog
-	url = imguifiledialoghttps://github.com/aiekick/ImGuiFileDialog.git
+	url = https://github.com/aiekick/ImGuiFileDialog.git
 [submodule "libraries/ImGuizmo"]
 	path = libraries/ImGuizmo
-	url = imguizmohttps://github.com/CedricGuillemet/ImGuizmo.git
+	url = https://github.com/CedricGuillemet/ImGuizmo.git
