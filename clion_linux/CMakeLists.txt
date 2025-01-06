@@ -31,7 +31,7 @@ include_directories(${LIBRARIES})
 include_directories(${LIBRARIES}/ImGuiFileDialog)
 include_directories(${LIBRARIES}/ImGuizmo)
 include_directories(${LIBRARIES}/imgui)
-include_directories(${LIBRARIES}/imgui/backend)
+include_directories(${LIBRARIES}/imgui/backends)
 include_directories(${LIBRARIES}/lodepng)
 include_directories(${OPENGL_INCLUDE_DIR})
 
