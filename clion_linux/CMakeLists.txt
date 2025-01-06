@@ -10,7 +10,7 @@ set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}")
 
 set(FONTS ./Fonts)
 set(GEOMETRY ./Geometry)
-set(LIBRARIES ../Libraries)
+set(LIBRARIES ../libraries)
 set(PATTERNS ./Patterns)
 set(PRECOMPILED_HEADERS ./PrecompiledHeaders)
 set(RENDERING ./Rendering)
@@ -133,27 +133,27 @@ set(SOURCE_FILES
         ${RENDERING}/VAO.h
         ${RENDERING}/Window.cpp
         ${RENDERING}/Window.h
-        ${LIBRARIES}/lodepng.h
-        ${LIBRARIES}/lodepng.cpp
+        ${LIBRARIES}/lodepng/lodepng.h
+        ${LIBRARIES}/lodepng/lodepng.cpp
         ${LIBRARIES}/imgui/imgui.h
         ${LIBRARIES}/imgui/imgui.cpp
         ${LIBRARIES}/imgui/imgui_draw.cpp
-        ${LIBRARIES}/imgui/examples/imgui_impl_glfw.h
-        ${LIBRARIES}/imgui/examples/imgui_impl_glfw.cpp
-        ${LIBRARIES}/imgui/examples/imgui_impl_opengl3.cpp
+        ${LIBRARIES}/imgui/backend/imgui_impl_glfw.h
+        ${LIBRARIES}/imgui/backend/imgui_impl_glfw.cpp
+        ${LIBRARIES}/imgui/backend/imgui_impl_opengl3.cpp
         ${LIBRARIES}/imgui/imgui_tables.cpp
         ${LIBRARIES}/imgui/imgui_widgets.cpp
         ${LIBRARIES}/imgui/imgui_internal.h
         ${LIBRARIES}/imgui/imstb_truetype.h
-        ${LIBRARIES}/imguizmo/ImZoomSlider.h
-        ${LIBRARIES}/imguizmo/ImSequencer.h
-        ${LIBRARIES}/imguizmo/ImSequencer.cpp
-        ${LIBRARIES}/imguizmo/ImGuizmo.h
-        ${LIBRARIES}/imguizmo/ImGuizmo.cpp
-        ${LIBRARIES}/imguizmo/ImCurveEdit.h
-        ${LIBRARIES}/imguizmo/ImCurveEdit.cpp
-        ${LIBRARIES}/imguizmo/ImGradient.h
-        ${LIBRARIES}/imguizmo/ImGradient.cpp
+        ${LIBRARIES}/ImGuizmo/ImZoomSlider.h
+        ${LIBRARIES}/ImGuizmo/ImSequencer.h
+        ${LIBRARIES}/ImGuizmo/ImSequencer.cpp
+        ${LIBRARIES}/ImGuizmo/ImGuizmo.h
+        ${LIBRARIES}/ImGuizmo/ImGuizmo.cpp
+        ${LIBRARIES}/ImGuizmo/ImCurveEdit.h
+        ${LIBRARIES}/ImGuizmo/ImCurveEdit.cpp
+        ${LIBRARIES}/ImGuizmo/ImGradient.h
+        ${LIBRARIES}/ImGuizmo/ImGradient.cpp
         ${LIBRARIES}/ImGuiFileDialog/ImGuiFileDialog.h
         ${LIBRARIES}/ImGuiFileDialog/ImGuiFileDialog.cpp
         ${LIBRARIES}/ImGuiFileDialog/ImGuiFileDialogConfig.h
