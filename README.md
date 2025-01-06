@@ -1,4 +1,4 @@
-# Algoritmos Geométricos (RUJA)
+# Algoritmos Geométricos (UJA)
 
 ![c++](https://img.shields.io/github/languages/top/AlfonsoLRz/AlgoritmosGeometricos_RUJA) 
 ![opengl](https://img.shields.io/badge/opengl-4.5-red.svg) 
