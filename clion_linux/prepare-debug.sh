@@ -3,8 +3,6 @@
 # Move to the folder where this script is located
 cd "$(dirname "$0")"
 
-VCPKG_DIR="/c/vcpkg"
-TRIPLET="x64-windows"
 OUTPUT_DIR="cmake-build-debug"
 
 # Create the output directory if it doesn't exist
