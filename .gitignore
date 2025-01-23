@@ -77,8 +77,5 @@ vs/Source/*.png
 *.ini
 
 # Python
-license_header/.idea/*
-clion_updater/.idea/*
-draw_units/idea/*
 *.iml
 *.pyc
